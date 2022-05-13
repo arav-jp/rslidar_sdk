@@ -232,5 +232,5 @@ https://github.com/RoboSense-LiDAR/rslidar_sdk/issues/13
 
 ### 2. rvizでtfエラーみたいなのでて点群見れない
 
-`config/config.yaml`の`frame_id`を`/rslidar`から`rslidar`に変更したら治った.
+`config/config.yaml`の`frame_id`を`/rslidar`から`rslidar`に変更する
 
