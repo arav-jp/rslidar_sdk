@@ -213,8 +213,6 @@ The following documents are some quick guides for using some of the most common 
 [Multi-Cast](doc/howto/how_to_use_multi_cast_function.md) 
 
 
-# メモ
-
 ## 製品名
 RoboSense 3D Lidar ラインナップ https://www.zmp.co.jp/products/sensor/3d-lidar/rslidar
 
