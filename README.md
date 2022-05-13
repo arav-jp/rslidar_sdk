@@ -211,3 +211,28 @@ The following documents are some quick guides for using some of the most common 
 [Coordinate Transformation](doc/howto/how_to_use_coordinate_transformation.md) 
 
 [Multi-Cast](doc/howto/how_to_use_multi_cast_function.md) 
+
+
+# メモ
+
+## 製品名
+RoboSense 3D Lidar ラインナップ https://www.zmp.co.jp/products/sensor/3d-lidar/rslidar
+
+今回使用: 超広角視野対応 RS-Bpearl
+
+## sdk
+github: https://github.com/RoboSense-LiDAR/rslidar_sdk
+
+## ネットワーク構成
+
+pcのイーサーipを`192.168.1.102`に変更(lidarのipは`192.168.1.200`)
+
+## error 
+### 1. `roslaunch rslidar_sdk start.launch` 実行時 `ERRCODE_WRONGPKTHEADER`というエラーが出る
+`config/config.yaml`内のlidar typeを修正する(今回は, lidar_typeを`RSM1`から`RSBP`にしたら治った)
+https://github.com/RoboSense-LiDAR/rslidar_sdk/issues/13
+
+### 2. rvizでtfエラーみたいなのでて点群見れない
+
+`config/config.yaml`の`frame_id`を`/rslidar`から`rslidar`に変更したら治った.
+
