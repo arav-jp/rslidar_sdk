@@ -1,5 +1,7 @@
 # **rslidar_sdk**
 
+[![ROS build workflow](https://github.com/arav-jp/rslidar_sdk/actions/workflows/noetic.yml/badge.svg?branch=main)](https://github.com/arav-jp/rslidar_sdk/actions/workflows/noetic.yml)
+
  [中文介绍](README_CN.md) 
 
 ## 1 Introduction
