@@ -230,7 +230,7 @@ pcのイーサーipを`192.168.1.102`に変更(lidarのipは`192.168.1.200`)
 `config/config.yaml`内のlidar typeを修正する(今回は, lidar_typeを`RSM1`から`RSBP`にした)
 https://github.com/RoboSense-LiDAR/rslidar_sdk/issues/13
 
-### 2. rvizでtfエラーみたいなのでて点群見れない
+### 2. rvizでtfエラーが出てが点群見れない
 
 `config/config.yaml`の`frame_id`を`/rslidar`から`rslidar`に変更する
 
