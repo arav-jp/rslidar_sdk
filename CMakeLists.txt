@@ -156,9 +156,23 @@ find_package(yaml-cpp REQUIRED)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 #Driver core#
-add_subdirectory(src/rs_driver)
-find_package(rs_driver REQUIRED)
-include_directories(${rs_driver_INCLUDE_DIRS})
+# Check if rs_driver exists as subdirectory
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/rs_driver/CMakeLists.txt")
+  add_subdirectory(src/rs_driver)
+  find_package(rs_driver REQUIRED)
+  include_directories(${rs_driver_INCLUDE_DIRS})
+  set(RS_DRIVER_FOUND TRUE)
+else()
+  # Try to find rs_driver as an installed package
+  find_package(rs_driver QUIET)
+  if(rs_driver_FOUND)
+    include_directories(${rs_driver_INCLUDE_DIRS})
+    set(RS_DRIVER_FOUND TRUE)
+  else()
+    message(WARNING "rs_driver not found. Building without rs_driver support.")
+    set(RS_DRIVER_FOUND FALSE)
+  endif()
+endif()
 
 #========================
 # Build Setup
@@ -169,8 +183,12 @@ add_executable(rslidar_sdk_node
                src/manager/node_manager.cpp)
 
 target_link_libraries(rslidar_sdk_node                   
-                      ${YAML_CPP_LIBRARIES}
-                      ${rs_driver_LIBRARIES})
+                      ${YAML_CPP_LIBRARIES})
+
+# Link rs_driver libraries if available
+if(RS_DRIVER_FOUND)
+  target_link_libraries(rslidar_sdk_node ${rs_driver_LIBRARIES})
+endif()
 
 #Ros#
 if(roscpp_FOUND)
@@ -201,9 +219,11 @@ if(rclcpp_FOUND)
   install(DIRECTORY
     launch
     rviz
+    config
     DESTINATION share/${PROJECT_NAME})
 
   ament_package()
 
 endif(rclcpp_FOUND)
+
 
